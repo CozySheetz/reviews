@@ -1,36 +1,41 @@
-const mysql = require('mysql')
+-- const mysql = require('mysql')
 
-const db = mysql.createConnection({
-  user: 'root',
-  password: 'Annabelle',
-  database: 'reviews' 
-})
+-- const db = mysql.createConnection({
+--   user: 'root',
+--   password: 'Annabelle',
+--   database: 'CozyReviews' 
+-- })
 
+-- mysql -u root -p < db/schema.sql
+DROP DATABASE IF EXISTS review;
+CREATE DATABASE IF NOT EXISTS review;
+
+use review; 
 
 CREATE TABLE IF NOT EXISTS user (
     id INT NOT NULL AUTO_INCREMENT,
-    firstName VARCHAR(15) NOT NULL,
-    lastName VARCHAR(30) NOT NULL,
-    phoneNumber VARCHAR (15) NOT NULL,
+    first_name VARCHAR(15) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    phone VARCHAR (15) NOT NULL,
     picture VARCHAR(50),
     email VARCHAR (30) NOT NULL,
-    workemail VARCHAR (30) NOT NULL,
+    work_email VARCHAR (30) NOT NULL,
     PRIMARY KEY (id)
 );
 
 
-CREATE TABLE IF NOT EXISTS listing (
-    id VARCHAR(20) NOT NULL,
+CREATE TABLE  IF NOT EXISTS listing (
+    id INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS booking (
-   id INT NOT NULL AUTO_INCREMENT,
-    checkIn DATE NOT NULL,
-    checkOut DATE NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
+    check_in DATE NOT NULL,
+    check_out DATE NOT NULL,
     PRIMARY KEY (id),
-    listingID INT,
-    userId INT, 
+    listingId INT,
+    userId INT,
 
     FOREIGN KEY (listingId)
     REFERENCES listing(id),
@@ -48,7 +53,7 @@ CREATE TABLE IF NOT EXISTS reviews (
     locat INT NOT NULL, 
     checkIn INT NOT NULL, 
     val INT NOT NULL, 
-    overview VARCHAR(100), 
+    overview VARCHAR(1000), 
     listingId INT,
     userId INT, 
     bookingId INT, 
