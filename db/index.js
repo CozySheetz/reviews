@@ -43,7 +43,7 @@ module.exports = {
     },
 
 getJoinInformation: (cb) => {
-let info = `SELECT first_name,last_name, overview from user u inner join reviews  r on u.id=r.userId`
+let info = `SELECT first_name,last_name, picture, overview from user u inner join reviews  r on u.id=r.userId`
 
 connection.query(info, (err,data)=>{
     if(err){

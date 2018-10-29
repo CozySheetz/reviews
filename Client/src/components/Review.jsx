@@ -8,10 +8,13 @@ class Review extends React.Component{
 
     render() {
         return (
-            <div>
+            <div className = 'style'>
 
-         <div> {this.props.review.first_name}</div>
-         <div>{this.props.review.overview}</div> 
+        <div className= 'headerWrapper'>
+        <div className='picture'> <img src= {this.props.review.picture} /></div>
+         <div className='reviewName'> {this.props.review.first_name}</div>
+        </div>
+         <div className='overview '>{this.props.review.overview}</div> 
          <form> <option/> </form>
             </div>
 
