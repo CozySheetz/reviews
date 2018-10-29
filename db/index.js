@@ -17,15 +17,13 @@ connection.connect(function (err) {
 
 module.exports = {
 
-    getReviews: (cb) => {
-
-        let info = `SELECT overview FROM reviews`
-
+    getRating: (cb) => {
+        let info = `SELECT AVG(accuracy)'Accuracy', AVG(communication) 'Communication', AVG(cleanliness) 'Cleanliness', AVG(locat) 'Location', AVG(checkIn) 'Check-in', AVG(val) 'Value' FROM reviews`
         connection.query(info, (err, data) => {
             if (err) {
-                console.error(err)
+                console.error(err);
             } else {
-                cb(null, data)
+                cb(null, data);
             }
         })
     },
@@ -33,25 +31,25 @@ module.exports = {
     getUserName: (cb) => {
         let info = `SELECT first_name FROM user`
 
-        connection.query(info, (err,data)=>{
-            if(err){
-                console.error(err)
+        connection.query(info, (err, data) => {
+            if (err) {
+                console.error(err);
             } else {
-                cb(null,data)
+                cb(null, data);
             }
         })
     },
 
-getJoinInformation: (cb) => {
-let info = `SELECT first_name,last_name, picture, overview from user u inner join reviews  r on u.id=r.userId`
+    getJoinInformation: (cb) => {
+        let info = `SELECT first_name,last_name, picture, overview from user u inner join reviews  r on u.id=r.userId`
 
-connection.query(info, (err,data)=>{
-    if(err){
-        console.log('error in sql get join',err)
-    } else {
-        cb(null, data)
+        connection.query(info, (err, data) => {
+            if (err) {
+                console.log('error in sql get join', err);
+            } else {
+                cb(null, data);
+            }
+        })
+
     }
-})
-
-}
 }

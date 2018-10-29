@@ -7,10 +7,11 @@ module.exports = {
     getRatings: (req, res) => {
 
 
-        reviewModels.getReviews((err, data) => {
+        reviewModels.getRating((err, data) => {
             if (err) {
                 console.error(err)
             } else {
+            
             res.send(data)
             }
         })
