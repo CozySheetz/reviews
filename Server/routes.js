@@ -5,6 +5,7 @@ const reviewController = require('./controller.js')
 router.get('/rating', reviewController.getRatings)
 // router.get('/reviews', reviewController.getReviews)
 router.get('/user',reviewController.getUser)
+router.post('/search', reviewController.getSearch)
 
 
 
