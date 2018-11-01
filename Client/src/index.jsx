@@ -3,26 +3,28 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Reviews from './components/Reviews.jsx';
 // import Review from './components/Review.jsx'
-import Rating from './components/Rating.jsx'
-import Ratings from './components/Ratings.jsx'
+import Rating from './components/Rating.jsx';
+import Ratings from './components/Ratings.jsx';
+import Search from './components/Search.jsx';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
-      averages: []
+      reviews: [],
+      averages: [],
+      filtered: false,
+      filteredReview : []
     };
     this.handleGettingAverages = this.handleGettingAverages.bind(this);
     this.getUserName = this.getUserName.bind(this);
+    this.handleSearch =this.handleSearch.bind(this);
   }
 
 
   handleGettingAverages() {
-    // console.log("in averages");
     axios.get("/rating").then(data => {
-        // console.log(data.data[0])
      this.setState({averages: data.data
     });
     });
@@ -30,8 +32,12 @@ class App extends React.Component {
 
   getUserName() {
     axios.get("/user").then(data => {
-      this.setState({users: data.data});
+      this.setState({reviews: data.data});
     });
+  }
+  handleSearch(filter) {
+   this.setState({filteredReview: filter, filtered: true})
+  
   }
 
   componentDidMount() {
@@ -39,22 +45,21 @@ class App extends React.Component {
     this.handleGettingAverages(); 
   }
 
+
   render() {
     return (
       <div className="app">
         <header className="navbar">
           <h1>Reviews</h1>
         </header>
-          {/* {this.state.averages.map((rating)=> <h2> {rating.Accuracy} {rating.Cleanliness} </h2>)} */}
 
         <div className="main">
-          {/* <h1> {this.state.reviews.map((item) => <li>{item.overview}</li>)}</h1> */}
-          {/* <Ratings rating={this.state.ratings}/> */}
-          {/* {this.state.averages.map((rating)=> <h2> {rating.Accuracy} {rating.Cleanliness} </h2>)} */}
+          <Search search={this.handleSearch}/> 
+    
          <Ratings
           averages={this.state.averages}  /> 
-          {/* <Ratings /> */}
-          <Reviews rev={this.state.users} />
+          <Reviews rev={this.state.filtered === false ? this.state.reviews: this.state.filteredReview} />
+
         </div>
       </div>
     );

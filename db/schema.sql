@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS user (
     first_name VARCHAR(15) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     phone VARCHAR (15) NOT NULL,
-    picture VARCHAR(50),
+    picture VARCHAR(150),
     email VARCHAR (30) NOT NULL,
     work_email VARCHAR (30) NOT NULL,
     PRIMARY KEY (id)
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS reviews (
     checkIn INT NOT NULL, 
     val INT NOT NULL, 
     overview VARCHAR(1000), 
-    dateCreated DATE NOT NULL,
+    dateCreated VARCHAR(50),
     listingId INT,
     userId INT, 
     bookingId INT, 
@@ -69,9 +69,13 @@ CREATE TABLE IF NOT EXISTS reviews (
 
     FOREIGN KEY (bookingId)
     REFERENCES booking(id)
+
+    -- FULLTEXT idx (overview)
 );
 
-insert into user (id, first_name, last_name, phone, picture, email, work_email) values (1, 'Dukey', 'Coffin', '662-671-1102', 'http://cdn.akc.org/content/hero/puppy-boundaries_header.jpg', 'dcoffin0@state.tx.us', 'dcoffin0@answers.com');
+ALTER TABLE reviews ADD FULLTEXT (overview);              
+
+insert into user (id, first_name, last_name, phone, picture, email, work_email) values (1, 'Dukey', 'Coffin', '662-671-1102', 'https://i.pinimg.com/originals/3e/d8/67/3ed8672019ba6c837cf83c01fc294e5f.jpg', 'dcoffin0@state.tx.us', 'dcoffin0@answers.com');
 insert into user (id, first_name, last_name, phone, picture, email, work_email) values (2, 'Linet', 'Shackelton', '915-583-9378', 'https://williamsburgvets.com/wp-content/uploads/2018/03/bulldog-puppy-pic.jpg', 'lshackelton1@paypal.com', 'lshackelton1@utexas.edu');
 insert into user (id, first_name, last_name, phone, picture, email, work_email) values (3, 'Meggie', 'Denson', '836-239-3777', 'https://williamsburgvets.com/wp-content/uploads/2018/03/bulldog-puppy-pic.jpg', 'mdenson2@jigsy.com', 'mdenson2@imageshack.us');
 insert into user (id, first_name, last_name, phone, picture, email, work_email) values (4, 'Linoel', 'Silly', '493-365-4235', 'https://vetstreet-brightspot.s3.amazonaws.com/1a/2f38b0a0d711e0a2380050568d634f/file/great-dane-1-645mk062411.jpg', 'lsilly3@marriott.com', 'lsilly3@hp.com');
@@ -94,14 +98,16 @@ insert into booking (id, check_in, check_out,listingId, userId) values (9, '2018
 insert into booking (id, check_in, check_out,listingId, userId) values (10, '2017-12-25 05:23:01', '2017-12-27 15:23:22',(select id from listing where id = 1),(select id from user where id = 10));
 
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (1, 5, 3, 3, 5, 2, 5, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.', '2018-09-10 11:22:28',(select id from listing where id = 1), (select id from user where id = 1), (select id from booking where id =1 ));
-insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (2, 3, 4, 1, 4, 2, 1, 'Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.','2018-05-09',(select id from listing where id = 1), (select id from user where id = 2), (select id from booking where id = 2));
-insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (3, 1, 2, 1, 4, 4, 1, 'Nunc purus. Phasellus in felis.','2018-04-09',(select id from listing where id = 1), (select id from user where id = 3), (select id from booking where id = 3 ));
-insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (4, 1, 4, 4, 5, 2, 5, 'Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.', ' 2018-10-17', (select id from listing where id = 1), (select id from user where id = 4), (select id from booking where id = 4));
+insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (2, 3, 4, 1, 4, 2, 1, 'Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.','2018-05-09 11:22:28',(select id from listing where id = 1), (select id from user where id = 2), (select id from booking where id = 2));
+insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (3, 1, 2, 1, 4, 4, 1, 'Nunc purus. Phasellus in felis.','2018-04-09 11:22:28',(select id from listing where id = 1), (select id from user where id = 3), (select id from booking where id = 3 ));
+insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (4, 1, 4, 4, 5, 2, 5, 'Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.', ' 2018-10-17 11:22:28', (select id from listing where id = 1), (select id from user where id = 4), (select id from booking where id = 4));
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (5, 5, 2, 4, 2, 3, 5, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', '2018-04-23 11:22:28',(select id from listing where id = 1), (select id from user where id = 5), (select id from booking where id = 5));
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (6, 2, 5, 1, 2, 3, 5, 'Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.',  '2018-10-28 11:22:28',(select id from listing where id = 1), (select id from user where id = 6), (select id from booking where id = 6));
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (7, 2, 4, 3, 5, 4, 4, 'Etiam vel augue.', '2018-10-28 11:22:28', (select id from listing where id = 1), (select id from user where id = 7), (select id from booking where id = 7));
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (8, 1, 4, 3, 3, 5, 5, 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.', '2017-12-30 11:22:28', (select id from listing where id = 1), (select id from user where id = 8), (select id from booking where id = 8));
-insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (9, 3, 3, 5, 3, 3, 4, 'Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', (select id from listing where id = 1),'2018-10-30 11:22:28', (select id from user where id = 9), (select id from booking where id = 9));
+insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (9, 3, 3, 5, 3, 3, 4, 'Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.','2018-10-30 11:22:28',(select id from listing where id = 1), (select id from user where id = 9), (select id from booking where id = 9));
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (10, 5, 5, 2, 4, 4, 3, 'Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.', '2018-10-28 11:22:28',(select id from listing where id = 1), (select id from user where id = 10), (select id from booking where id =10));
 
 insert into listing (id) values (1);
+insert into listing (id) values (2);
+insert into listing (id) values (3);

@@ -6,31 +6,28 @@ class Ratings extends React.Component {
     constructor(props){
         super(props); 
         this.state = {
-        // reviewItem: [] 
+        reviews: [] 
         }
-        // this.handleGettingAverages = this.handleGettingAverages.bind(this);
+        this.handleGettingAverages = this.handleGettingAverages.bind(this);
     }
     
-    handleGettingPairs () {
-
+    handleGettingAverages() {
+        axios.get('/rating')
+            .then((data) => {
+                this.setState({ reviews: data.data })
+            })
     }
-    // handleGettingAverages () {
-    //     console.log('in averages')
-    //  axios.get('/rating')
-    //       .then((data) => {
-    //           console.log(data.data)
-    //           this.setState({reviews: data.data})
-    //         })
-    // }
 
     componentDidMount () {
-        // this.handleGettingAverages();
+        this.handleGettingAverages();
     }
 
     render(){
+        // console.log(this.state.reviews[0].Accuracy)
         return (
             <div> 
-                <Rating /> 
+                {/* {this.state.reviews.length>0 &&this.state.reviews[0]} */}
+                <Rating ratings={this.state.reviews}/> 
             </div>
         )
     }

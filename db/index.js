@@ -41,7 +41,7 @@ module.exports = {
     },
 
     getJoinInformation: (cb) => {
-        let info = `SELECT first_name,last_name, picture, overview from user u inner join reviews  r on u.id=r.userId`
+        let info = `SELECT first_name,last_name, picture, dateCreated, overview from user u inner join reviews r on u.id=r.userId`
 
         connection.query(info, (err, data) => {
             if (err) {
@@ -51,5 +51,19 @@ module.exports = {
             }
         })
 
+    },
+
+    getSearchInformation : (params,cb) => {
+        let info = `SELECT first_name,last_name, picture, dateCreated, overview from user u inner join reviews r on u.id=r.userId WHERE MATCH (overview) AGAINST (? IN NATURAL LANGUAGE MODE)`
+        // let info = `SELECT * FROM reviews WHERE MATCH (overview) AGAINST (? IN NATURAL LANGUAGE MODE)`
+        connection.query(info, params, (err, data) => {
+            if (err) {
+                console.log('error in sql get search', err);
+            } else {
+
+                cb(null, data);
+            }
+      
+        })
     }
 }
