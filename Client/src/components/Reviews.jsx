@@ -13,9 +13,7 @@ class Reviews extends React.Component {
 
     }
 
-
     render() {
-       
         return (
             <div>
             <ul>

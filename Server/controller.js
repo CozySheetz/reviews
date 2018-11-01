@@ -29,14 +29,22 @@ module.exports = {
 
     getSearch: (req,res) => {
         let params = [req.body.words]
-        console.log('in search')
-        console.log(params)
         reviewModels.getSearchInformation(params,(err,data) => {
             if (err) {
              console.error(err)
             } else {
                 res.send(data)
                 console.log(data)
+            }
+        })
+    },
+
+    getAverages: (req,res) => {
+        reviewModels.getOverallAverage((err,data) =>{
+            if(err){
+            console.error(err)
+            } else{
+                res.send(data)
             }
         })
     }

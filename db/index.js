@@ -17,6 +17,16 @@ connection.connect(function (err) {
 
 module.exports = {
 
+    getOverallAverage: (cb) => {
+        let info= `SELECT (AVG(accuracy) + AVG(communication) + AVG(cleanliness) + AVG(locat) + AVG(checkIn) + AVG(val) )/6 'averages'FROM reviews`
+        connection.query(info, (err, data) => {
+            if (err) {
+                console.error(err);
+            } else {
+                cb(null, data);
+            }
+        })
+    },
     getRating: (cb) => {
         let info = `SELECT AVG(accuracy)'Accuracy', AVG(communication) 'Communication', AVG(cleanliness) 'Cleanliness', AVG(locat) 'Location', AVG(checkIn) 'Check-in', AVG(val) 'Value' FROM reviews`
         connection.query(info, (err, data) => {
@@ -55,7 +65,7 @@ module.exports = {
 
     getSearchInformation : (params,cb) => {
         let info = `SELECT first_name,last_name, picture, dateCreated, overview from user u inner join reviews r on u.id=r.userId WHERE MATCH (overview) AGAINST (? IN NATURAL LANGUAGE MODE)`
-        // let info = `SELECT * FROM reviews WHERE MATCH (overview) AGAINST (? IN NATURAL LANGUAGE MODE)`
+        
         connection.query(info, params, (err, data) => {
             if (err) {
                 console.log('error in sql get search', err);
