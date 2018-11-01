@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Reviews from './components/Reviews.jsx';
-import Rating from './components/Rating.jsx';
 import Ratings from './components/Ratings.jsx';
 import Search from './components/Search.jsx';
 
@@ -34,13 +33,14 @@ class App extends React.Component {
       this.setState({reviews: data.data});
     });
   }
+
   handleSearch(filter) {
-   this.setState({filteredReview: filter, filtered: true})
+   this.setState({filteredReview: filter, filtered: true});
   
   }
 
   componentDidMount() {
-    this.getUserName();
+    this.getUserInformation();
     this.handleGettingAverages(); 
   }
 

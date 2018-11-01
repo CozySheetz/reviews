@@ -2,8 +2,6 @@ import React from 'react';
 import Ratings from 'react-ratings-declarative';
 import axios from 'axios';
 
-
-
 class Search extends React.Component{
     constructor(props){
         super(props)
@@ -43,8 +41,8 @@ render() {
     return  (
         <div className= 'search'>
          <span className = 'justify-self-center'>
-           <div className="starContainer"> 
-      <span fontFamily= 'montreal'> {this.props.reviewLength} Reviews </span> 
+           <div className="starContainer" fontFamily= 'montreal'> 
+      <span className= 'fontFamily:montreal'> {this.props.reviewLength} Reviews </span> 
       <Ratings
         rating={Number(this.state.average)}
         widgetSpacings="4px"
