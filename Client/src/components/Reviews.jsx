@@ -24,7 +24,7 @@ class Reviews extends React.Component {
                     {this.props.rev.map((item) => (
                         <Review review={item} />
                     ))}
-                    <button onClick={this.getReview}> </button>
+    
                 </div>
             </div>
             </div>

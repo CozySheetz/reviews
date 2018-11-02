@@ -6,13 +6,14 @@ class Search extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            searchWords: 'Search reviews',
+            searchWords: '',
             average: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleGettingAverages = this.handleGettingAverages.bind(this); 
     }
+
     handleGettingAverages() {
         axios.get('/average')
              .then((data)=> 
@@ -39,32 +40,29 @@ componentDidMount() {
 render() {
  
     return  (
-        <div className= 'search'>
-         <span className = 'justify-self-center'>
-           <div className="starContainer" fontFamily= 'montreal'> 
-      <span className= 'fontFamily:montreal'> {this.props.reviewLength} Reviews </span> 
+        <div className= 'search d-flex'>
+         
+           <div fontFamily= 'montreal' className='justify-content-start large-offset-1' > 
+      <span  style={{ 'fontFamily': 'Montreal'}}> {this.props.reviewLength} Reviews </span> 
       <Ratings
         rating={Number(this.state.average)}
-        widgetSpacings="4px"
-        className="col-5 float-right"
+        // widgetSpacings="2px"
+        // className="col-5 float-right"
       >
-        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" />
-        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" />
-        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" />
-        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" />
-        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" />
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px" />
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
       </Ratings>
-          </div>
-         <div> 
-
-         </div>
-          </span> 
+         
+          </div> 
     <form className= 'submit d-flex justify-content-end'
-     onSubmit={this.handleSubmit}
-     > 
-     <div className= 'justify-self-right'>
-    <input className='fill justify-self-right' type ='text' value={this.state.searchWords} onChange={this.handleChange} />
-         </div> 
+     onSubmit={this.handleSubmit}> 
+
+      
+    <input style={{'marginLeft': '120px'}} className='fill justify-self-right' type ='text' placeholder= 'Search reviews' value={this.state.searchWords} onChange={this.handleChange} />
+
     </form> 
         </div>
    )
