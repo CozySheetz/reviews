@@ -15,8 +15,10 @@ class Search extends React.Component{
     }
 
     handleGettingAverages() {
-        axios.get('/average')
-             .then((data)=> 
+        let idNumber = (window.location.search.slice(-3) * 1);
+        axios.get('/average', {
+            params: {listingId: idNumber}
+          }).then((data)=> 
             this.setState({average: data.data[0].averages})
              )
     }
@@ -27,8 +29,10 @@ class Search extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
+        let idNumber = (window.location.search.slice(-3) * 1);
         axios.post('/search', {
-        words: this.state.searchWords
+        listingId: idNumber,
+        words: this.state.searchWords,
         })
         .then((data) => this.props.search(data.data))
         .then(this.setState({searchWords:''}))
@@ -45,10 +49,7 @@ render() {
            <div fontFamily= 'montreal' className='justify-content-start large-offset-1' > 
       <span  style={{ 'fontFamily': 'Montreal'}}> {this.props.reviewLength} Reviews </span> 
       <Ratings
-        rating={Number(this.state.average)}
-        // widgetSpacings="2px"
-        // className="col-5 float-right"
-      >
+        rating={Number(this.state.average)}>
         <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px" />
         <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
         <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>

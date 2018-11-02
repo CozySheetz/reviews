@@ -6,8 +6,8 @@ class Rating extends React.Component {
   render() {
     var reviewDiv = (ratingName, ratingValue) =>  {
       return (
-        <div className="container row"> 
-          <div style={{ 'fontFamily': 'Montserrat, sans-serif' }} className=' col-5 float-left p-0'> {ratingName}  </div>
+        <div className="container row" > 
+          <div style={{ 'fontFamily': 'Montserrat, sans-serif', 'marginLeft': '50px'}} className=' col-5 float-left p-0'> {ratingName}  </div>
           <Ratings
             rating={ratingValue}
             widgetSpacings="2px"

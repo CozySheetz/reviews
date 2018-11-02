@@ -12,7 +12,10 @@ class Ratings extends React.Component {
     }
 
     handleGettingAverages() {
-        axios.get('/rating')
+        let idNumber = (window.location.search.slice(-3) * 1);
+        axios.get('/rating',{
+            params: {listingId: idNumber}
+          })
             .then((data) => {
                 this.setState({ reviews: data.data });
             })

@@ -19,17 +19,23 @@ class App extends React.Component {
     this.getUserInformation = this.getUserInformation.bind(this);
     this.handleSearch =this.handleSearch.bind(this);
   }
-
+  
 
   handleGettingAverages() {
-    axios.get("/rating").then(data => {
+    let idNumber = window.location.search.slice(-3)
+    axios.get( "/rating", {
+      params: {listingId: idNumber}
+    }).then(data => {
      this.setState({averages: data.data
     });
     });
   }
 
   getUserInformation() {
-    axios.get("/user").then(data => {
+    let idNumber = (window.location.search.slice(-3) * 1); 
+    axios.get("/user",{
+      params: {listingId: idNumber}
+    }).then(data => {
       this.setState({reviews: data.data});
     });
   }

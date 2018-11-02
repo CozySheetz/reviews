@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const path = require('path')
 const reviewController = require('./controller.js')
 
 router.get('/rating', reviewController.getRatings)
@@ -8,6 +9,10 @@ router.get('/user',reviewController.getUser)
 router.post('/search', reviewController.getSearch)
 
 
+router.get('/*', (req,res) => {
 
+
+    res.sendFile(path.join(__dirname + '/../Client/dist/index.html'))
+}); 
 
 module.exports = router
