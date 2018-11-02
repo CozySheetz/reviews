@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS user (
     last_name VARCHAR(30) NOT NULL,
     phone VARCHAR (15) NOT NULL,
     picture VARCHAR(150),
-    email VARCHAR (30) NOT NULL,
+    email VARCHAR (50) NOT NULL,
     work_email VARCHAR (30) NOT NULL,
     PRIMARY KEY (id)
 );
