@@ -303,7 +303,6 @@ insert into booking (id, check_in, Check_out, listingId, userId) values (23, '20
 insert into booking (id, check_in, Check_out, listingId, userId) values (24, '2018-02-20 09:25:09', '2018-08-30 08:20:47', 8, 28);
 
 
-
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (1, 5, 3, 3, 5, 2, 5, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.', '2018-09-10 11:22:28',1, 1, 1);
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (2, 3, 4, 1, 4, 2, 1, 'Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.','2018-05-09 11:22:28',1, 2, 2);
 insert into reviews (id, accuracy, communication, cleanliness, locat, checkIn, val, overview, dateCreated, listingId,userId,bookingId) values (3, 1, 2, 1, 4, 4, 1, 'Nunc purus. Phasellus in felis.','2018-04-09 11:22:28',1, 3, 3);
