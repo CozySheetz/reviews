@@ -3,35 +3,36 @@ import Rating from './Rating.jsx';
 import axios from 'axios';
 
 class Ratings extends React.Component {
-    constructor(props){
-        super(props); 
+    constructor(props) {
+        super(props);
         this.state = {
-        reviews: [] 
+            reviews: []
         }
         this.handleGettingAverages = this.handleGettingAverages.bind(this);
     }
-    
+
     handleGettingAverages() {
-        axios.get('/rating')
+        let idNumber = (window.location.search.slice(-3) * 1);
+        axios.get('/rating',{
+            params: {listingId: idNumber}
+          })
             .then((data) => {
-                this.setState({ reviews: data.data })
+                this.setState({ reviews: data.data });
             })
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.handleGettingAverages();
     }
 
-    render(){
-        // console.log(this.state.reviews[0].Accuracy)
+    render() {
         return (
-            <div> 
-                {/* {this.state.reviews.length>0 &&this.state.reviews[0]} */}
-                <Rating ratings={this.state.reviews}/> 
+            <div>
+                <Rating ratings={this.state.reviews} />
             </div>
         )
     }
 }
 
-export default Ratings; 
+export default Ratings;
 

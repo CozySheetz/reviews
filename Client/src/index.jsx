@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Reviews from './components/Reviews.jsx';
-// import Review from './components/Review.jsx'
-import Rating from './components/Rating.jsx';
 import Ratings from './components/Ratings.jsx';
 import Search from './components/Search.jsx';
 
@@ -18,30 +16,37 @@ class App extends React.Component {
       filteredReview : []
     };
     this.handleGettingAverages = this.handleGettingAverages.bind(this);
-    this.getUserName = this.getUserName.bind(this);
+    this.getUserInformation = this.getUserInformation.bind(this);
     this.handleSearch =this.handleSearch.bind(this);
   }
-
+  
 
   handleGettingAverages() {
-    axios.get("/rating").then(data => {
+    let idNumber = window.location.search.slice(-3)
+    axios.get( "/rating", {
+      params: {listingId: idNumber}
+    }).then(data => {
      this.setState({averages: data.data
     });
     });
   }
 
-  getUserName() {
-    axios.get("/user").then(data => {
+  getUserInformation() {
+    let idNumber = (window.location.search.slice(-3) * 1); 
+    axios.get("/user",{
+      params: {listingId: idNumber}
+    }).then(data => {
       this.setState({reviews: data.data});
     });
   }
+
   handleSearch(filter) {
-   this.setState({filteredReview: filter, filtered: true})
+   this.setState({filteredReview: filter, filtered: true});
   
   }
 
   componentDidMount() {
-    this.getUserName();
+    this.getUserInformation();
     this.handleGettingAverages(); 
   }
 
@@ -50,14 +55,12 @@ class App extends React.Component {
     return (
       <div className="app">
         <header className="navbar">
-          <h1>Reviews</h1>
         </header>
 
-        <div className="main">
-          <Search search={this.handleSearch}/> 
+        <div className="main container w-50">
     
-         <Ratings
-          averages={this.state.averages}  /> 
+          <Search  search={this.handleSearch} reviewLength={this.state.reviews.length}/> 
+          <Ratings averages={this.state.averages}  /> 
           <Reviews rev={this.state.filtered === false ? this.state.reviews: this.state.filteredReview} />
 
         </div>
@@ -66,4 +69,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+ReactDOM.render(<App/>, document.getElementById('reviews-app'))

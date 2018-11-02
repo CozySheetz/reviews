@@ -5,7 +5,8 @@ const reviewModels = require ('../db/index.js')
 module.exports = {
 
     getRatings: (req, res) => {
-        reviewModels.getRating((err, data) => {
+        let params = [req.query.listingId]
+        reviewModels.getRating(params,(err, data) => {
             if (err) {
                 console.error(err)
             } else {
@@ -17,8 +18,9 @@ module.exports = {
     
 
     getUser: (req,res) => {
-    
-        reviewModels.getJoinInformation((err,data) =>{
+      
+        let params = [req.query.listingId]
+        reviewModels.getJoinInformation(params, (err,data) =>{
             if(err){
             console.error(err)
             } else{
@@ -28,15 +30,27 @@ module.exports = {
     },
 
     getSearch: (req,res) => {
-        let params = [req.body.words]
-        console.log('in search')
-        console.log(params)
+        console.log('req.query',req.query)
+        console.log('req.body',req.body)
+        let params = [req.body.listingId, req.body.words]
         reviewModels.getSearchInformation(params,(err,data) => {
             if (err) {
              console.error(err)
             } else {
                 res.send(data)
-                console.log(data)
+            }
+        })
+    },
+
+    getAverages: (req,res) => {
+        let params = [req.query.listingId];
+        console.log('IN AVERAGES')
+        console.log('REQ QUERY', req.query)
+        reviewModels.getOverallAverage(params, (err,data) =>{
+            if(err){
+            console.error(err)
+            } else{
+                res.send(data)
             }
         })
     }

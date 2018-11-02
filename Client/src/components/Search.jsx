@@ -1,40 +1,71 @@
 import React from 'react';
-// import SearchBar from 'material-ui-search-bar'
-import axios from 'axios'
-
+import Ratings from 'react-ratings-declarative';
+import axios from 'axios';
 
 class Search extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            searchWords:''
+            searchWords: '',
+            average: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleGettingAverages = this.handleGettingAverages.bind(this); 
+    }
+
+    handleGettingAverages() {
+        let idNumber = (window.location.search.slice(-3) * 1);
+        axios.get('/average', {
+            params: {listingId: idNumber}
+          }).then((data)=> 
+            this.setState({average: data.data[0].averages})
+             )
     }
 
     handleChange(e) {
-        this.setState({searchWords:e.target.value})
-        
+        this.setState({searchWords:e.target.value})   
     }
 
     handleSubmit(e){
         e.preventDefault()
+        let idNumber = (window.location.search.slice(-3) * 1);
         axios.post('/search', {
-        words: this.state.searchWords
+        listingId: idNumber,
+        words: this.state.searchWords,
         })
         .then((data) => this.props.search(data.data))
         .then(this.setState({searchWords:''}))
     }
 
-
+componentDidMount() {
+    this.handleGettingAverages(); 
+}
 render() {
+ 
     return  (
-    <form
-     onSubmit={this.handleSubmit}
-     > 
-    <input type ='text' value={this.state.searchWords} onChange={this.handleChange} />
+        <div className= 'search d-flex'>
+         
+           <div fontFamily= 'montreal' className='justify-content-start large-offset-1' > 
+      <span  style={{ 'fontFamily': 'Montreal'}}> {this.props.reviewLength} Reviews </span> 
+      <Ratings
+        rating={Number(this.state.average)}>
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px" />
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
+        <Ratings.Widget widgetRatedColor="#008489" widgetDimension="25px" widgetSpacings="2px"/>
+      </Ratings>
+         
+          </div> 
+    <form className= 'submit d-flex justify-content-end'
+     onSubmit={this.handleSubmit}> 
+
+      
+    <input style={{'marginLeft': '120px'}} className='fill justify-self-right' type ='text' placeholder= 'Search reviews' value={this.state.searchWords} onChange={this.handleChange} />
+
     </form> 
+        </div>
    )
    
 }

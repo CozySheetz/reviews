@@ -1,79 +1,67 @@
-.headerWrapper{
-    display:grid; 
-    grid-template-columns: 20%, 80%; 
-    grid-template-rows:  25%, 25%, 50%;
+
+
+.search {
+    border-width: 1px;
+    border-bottom-color:lightgrey;
+    border-top-color: lightgrey;
+    border-bottom-style: solid;
+    border-top-style: solid; 
+    padding: 32px; 
 }
-/* .style{
+
+
+.headerWrapper{
+    display:flex; 
+    flex-direction: row; 
+}
+
+.style{
     display:grid;
     grid-template-columns: 80px, auto, 20px; 
-    grid-gap: 0px; */
-    /* grid-template-rows: minmax(0, 200px) minmax(0, 200px); */
-    /* background-color: red; */
-    /* grid-auto-rows:  25%, 25%, 50%; */
-    /* top: 5px; */
-    /* margin:0px;    */
-    /* padding: 16px 16px 16px 16px;     */
-    /* border-width: 2px;
-    border-bottom-width:1px;
+    grid-gap: 0px; 
+    border-width: 1px;
     border-bottom-color:lightgrey;
-    border-bottom-style: solid; */
-    /* width: 100%; */
+    border-bottom-style: solid;
+    padding: 16px 16px 16px 16px; 
     
-/* } */
+}
 
 
 .overview{
     text-align: left; 
-    /* grid-column: 1/5; */
-    font-family: 'Helvetica Neue';
+    font-family: 'Montserrat', sans-serif;
+    border-width: 2px;
+    border-bottom-color:lightgrey;
 }
-    /* grid-row:row 2;
-    font-family: "Helvetica Neue"; 
- }
-/* .headerWrapper {
-    grid-column: col 1 / span 2;
-    grid-row: row;
-    display: grid;
-    /* grid-template-columns: repeat(1, [col] 50px); */
-    /* grid-gap: 10px; */
-    /* grid-template-columns: 1fr 1fr; */
-    
-/* }  */ 
 
-.picture{
-    grid-column: 1;
-    grid-row: 1/1;
-}
 
 .image{
     width: 60px;
     height: 60px;
     border-radius: 50%;
+}
+
+
+.reviewWrapper{
+    flex:2; 
 
 }
-/* .pictureWrapper{
-    grid-column: col 1 / span 2;
-    /* grid-column: 2/ 3; */
-    /* grid-row: 1;
-    display: grid; */
-    /* grid-template-columns: repeat(1, [col] 50px); */
-/* } */ 
 
 
 .reviewName{ 
     text-align: left; 
-    padding: 16px 16px 16px 16px;  
-    grid-column:2; 
-    grid-row:1;
-    font-family: "Helvetica Neue";
+    padding: 16px 16px 16px 16px; 
+    align-items: flex-end; 
+    justify-content: top; 
+    font-family: "MontrealRegular";
     font-weight: bold; 
     text-align: left;
     padding: 0px 15px; 
 }
 
 .reviewDate{
-    grid-column: 2/ 3;
-    grid-row:2;
     padding: 0px 15px ;
-    font-family: "Helvetica Neue";
+    justify-content: bottom; 
+    font-family: 'Montserrat', sans-serif;
+    vertical-align: top;
 }
