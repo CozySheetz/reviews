@@ -30,8 +30,6 @@ module.exports = {
     },
 
     getSearch: (req,res) => {
-        console.log('req.query',req.query)
-        console.log('req.body',req.body)
         let params = [req.body.listingId, req.body.words]
         reviewModels.getSearchInformation(params,(err,data) => {
             if (err) {
@@ -44,8 +42,6 @@ module.exports = {
 
     getAverages: (req,res) => {
         let params = [req.query.listingId];
-        console.log('IN AVERAGES')
-        console.log('REQ QUERY', req.query)
         reviewModels.getOverallAverage(params, (err,data) =>{
             if(err){
             console.error(err)
