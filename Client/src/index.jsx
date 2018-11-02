@@ -69,4 +69,6 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('reviews-app'))
+window.Reviews = App; 
+
+// ReactDOM.render(<App/>, document.getElementById('reviews-app'))

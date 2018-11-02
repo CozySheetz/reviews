@@ -1,17 +1,17 @@
 var mysql = require('mysql');
-// var connection = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'Annabelle',
-//     database: 'review'
-// });
 var connection = mysql.createConnection({
-    host: 'reviewz.cv4d8qjavmer.us-east-2.rds.amazonaws.com',
-    user: 'ELang7',
-    password: '0Rangesoda',
-    database: 'review',
-    port:3306
+    host: 'localhost',
+    user: 'root',
+    password: 'Annabelle',
+    database: 'review'
 });
+// var connection = mysql.createConnection({
+//     host: 'reviewz.cv4d8qjavmer.us-east-2.rds.amazonaws.com',
+//     user: 'ELang7',
+//     password: '0Rangesoda',
+//     database: 'review',
+//     port:3306
+// });
 connection.connect(function (err) {
     if (err) {
         console.error('error', err);
@@ -63,7 +63,6 @@ module.exports = {
     getSearchInformation : (params,cb) => {
     
         let info = `SELECT first_name,last_name, picture, dateCreated, overview from user u inner join reviews r on u.id=r.userId WHERE (listingId = (?) AND MATCH (overview) AGAINST (? IN NATURAL LANGUAGE MODE))`
-        // let info = `SELECT * FROM reviews WHERE listingId= ${params}`
         connection.query(info, params, (err, data) => {
             if (err) {
                 console.log('error in sql get search', err);
