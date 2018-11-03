@@ -3,7 +3,7 @@ const router = express.Router()
 const path = require('path')
 const reviewController = require('./controller.js')
 
-router.get('/rating', reviewController.getRatings)
+router.get('/rating/:id', reviewController.getRatings)
 router.get('/average', reviewController.getAverages)
 router.get('/user',reviewController.getUser)
 router.post('/search', reviewController.getSearch)
