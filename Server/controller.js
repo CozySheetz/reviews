@@ -5,12 +5,13 @@ const reviewModels = require ('../db/index.js')
 module.exports = {
 
     getRatings: (req, res) => {
+        console.log('in get ratings listing id is', req.query.listingId)
         let params = [req.query.listingId]
         reviewModels.getRating(params,(err, data) => {
             if (err) {
                 console.error(err)
             } else {
-            
+            console.log(data)
             res.send(data)
             }
         })
