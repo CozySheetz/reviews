@@ -7,17 +7,17 @@ class Rating extends React.Component {
     var reviewDiv = (ratingName, ratingValue) =>  {
       return (
         <div className="container row" > 
-          <div style={{ 'fontFamily': 'Montserrat, sans-serif', 'marginLeft': '50px'}} className=' col-5 float-left p-0'> {ratingName}  </div>
+          <div style={{ 'fontFamily': 'Montserrat, sans-serif', 'marginRight': '30px'}} className=' col-6 float-left p-0'> {ratingName}  </div>
           <Ratings
             rating={ratingValue}
             widgetSpacings="2px"
             className="col-5 float-right"
           >
-            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="18px" />
-            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="18px" />
-            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="18px" />
-            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="18px" />
-            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="18px" />
+            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="14px" />
+            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="14px" />
+            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="14px" />
+            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="14px" />
+            <Ratings.Widget widgetRatedColor="#008489" widgetDimension="14px" />
           </Ratings>
         </div>
       )
