@@ -23,7 +23,6 @@ class Search extends React.Component{
             this.setState({average: data.data[0].averages})
              )
     }
-
     handleChange(e) {
         this.setState({searchWords:e.target.value})   
     }
@@ -62,7 +61,6 @@ render() {
     <form className= 'submit d-flex justify-content-end'
      onSubmit={this.handleSubmit}> 
 
-      
     <input style={{'marginLeft': '120px'}} className='fill justify-self-right' type ='text' placeholder= 'Search reviews' value={this.state.searchWords} onChange={this.handleChange} />
 
     </form> 
