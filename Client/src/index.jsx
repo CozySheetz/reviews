@@ -22,12 +22,15 @@ class App extends React.Component {
   
 
   handleGettingAverages() {
-    let idNumber = window.location.search.slice(-3)
+    // let idNumber = window.location.search.slice(-3)
 
-    console.log(idNumber)
-    axios.get( "http://18.224.94.179/rating", {
-      params: {listingId: idNumber}
-    }).then(data => {
+    var path = window.location.href;
+    var splits = path.spit('/');
+    var id = parseInt(splits[splits.length - 1]);
+
+    console.log('IDIDIDDIDIDID', id)
+
+    axios.get( `http://18.224.94.179/rating${id}`).then(data => {
       this.setState({averages: data.data
       });
       console.log('hi Zen this is the id', idNumber )
