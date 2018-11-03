@@ -16,7 +16,7 @@ class Search extends React.Component{
 
     handleGettingAverages() {
         let idNumber = (window.location.search.slice(-3) * 1);
-        axios.get('/average', {
+        axios.get('http://18.224.94.179/average', {
             params: {listingId: idNumber}
           }).then((data)=> 
             this.setState({average: data.data[0].averages})
@@ -30,7 +30,7 @@ class Search extends React.Component{
     handleSubmit(e){
         e.preventDefault()
         let idNumber = (window.location.search.slice(-3) * 1);
-        axios.post('/search', {
+        axios.post('http://18.224.94.179/search', {
         listingId: idNumber,
         words: this.state.searchWords,
         })
