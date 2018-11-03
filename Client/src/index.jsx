@@ -33,7 +33,7 @@ class App extends React.Component {
     axios.get( `http://18.224.94.179/rating${id}`).then(data => {
       this.setState({averages: data.data
       });
-      console.log('hi Zen this is the id', idNumber )
+
     });
   }
 
@@ -41,9 +41,7 @@ class App extends React.Component {
     var path = window.location.href;
     var splits = path.split('/');
     var id = parseInt(splits[splits.length - 1]);
-    axios.get(`http://18.224.94.179/user${id}`,{
-      params: {listingId: idNumber}
-    }).then(data => {
+    axios.get(`http://18.224.94.179/user${id}`).then(data => {
       this.setState({reviews: data.data});
     });
   }
