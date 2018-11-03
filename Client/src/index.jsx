@@ -4,6 +4,7 @@ import axios from 'axios';
 import Reviews from './components/Reviews.jsx';
 import Ratings from './components/Ratings.jsx';
 import Search from './components/Search.jsx';
+import {getListingId} from './utilities/helpers.jsx'; 
 class App extends React.Component {
   constructor() {
     super();
@@ -12,27 +13,20 @@ class App extends React.Component {
       averages: [],
       filtered: false,
       filteredReviews : [],
-      id: ''
+      listingId: ''
     };
+    
     this.getAverages = this.getAverages.bind(this);
     this.getUserInformation = this.getUserInformation.bind(this);
     this.handleSearch =this.handleSearch.bind(this);
-    this.getIdFromURL= this.getIdFromURL.bind(this); 
   }
   
   async componentDidMount ()  {
-      await this.getIdFromURL(); 
+      await getListingId(this); 
       this.getUserInformation();
       this.getAverages(); 
   }
 
-  getIdFromURL() {
-    var path = window.location.href;
-    var splits = path.split('/');
-    var id = parseInt(splits[splits.length - 1]);
-    this.setState({id}); 
-  }
-  
   getAverages() {
     axios.get(`/rating/${this.state.id}}`).then(({data}) => {
       this.setState({averages: data});
@@ -53,7 +47,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="main container w-50">
-          <Search  search={this.handleSearch} reviewLength={this.state.reviews.length}/> 
+          <Search  handleSearch={this.handleSearch} reviewLength={this.state.reviews.length} listingId={this.state.id}/> 
           <Ratings averages={this.state.averages}  /> 
           <Reviews rev={this.state.filtered === false ? this.state.reviews: this.state.filteredReviews} />
         </div>
