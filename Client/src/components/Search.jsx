@@ -19,7 +19,6 @@ class Search extends React.Component{
         var splits = path.split('/');
         var id = parseInt(splits[splits.length - 1]);
         // let idNumber = (window.location.search.slice(-3) * 1);
-        console.log('id number getting averges', idNumber)
         axios.get(`http://18.224.94.179/average${id}`).then((data)=> 
             this.setState({average: data.data[0].averages})
              )
