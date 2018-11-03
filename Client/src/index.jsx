@@ -28,8 +28,9 @@ class App extends React.Component {
     axios.get( "http://18.224.94.179/rating", {
       params: {listingId: idNumber}
     }).then(data => {
-     this.setState({averages: data.data
-    });
+      this.setState({averages: data.data
+      });
+      console.log('hi Zen this is the id', idNumber )
     });
   }
 
