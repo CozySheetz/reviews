@@ -38,7 +38,9 @@ class App extends React.Component {
   }
 
   getUserInformation() {
-    let idNumber = (window.location.search.slice(-3) * 1); 
+    var path = window.location.href;
+    var splits = path.spit('/');
+    var id = parseInt(splits[splits.length - 1]);
     axios.get(`http://18.224.94.179/user${id}`,{
       params: {listingId: idNumber}
     }).then(data => {

@@ -32,10 +32,11 @@ class Search extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
+        
         var path = window.location.href;
         var splits = path.spit('/');
         var id = parseInt(splits[splits.length - 1]);
-        let idNumber = (window.location.search.slice(-3) * 1);
+       
         axios.post(`http://18.224.94.179/search${id}`, {
         // listingId: idNumber,
         words: this.state.searchWords,

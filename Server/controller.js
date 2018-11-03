@@ -21,7 +21,7 @@ module.exports = {
 
     getUser: (req,res) => {
       
-        let params = [req.query.listingId]
+        let params = [req.params.id]
         reviewModels.getJoinInformation(params, (err,data) =>{
             if(err){
             console.error(err)
@@ -32,7 +32,7 @@ module.exports = {
     },
 
     getSearch: (req,res) => {
-        let params = [req.body.listingId, req.body.words]
+        let params = [req.params.id, req.body.words]
         reviewModels.getSearchInformation(params,(err,data) => {
             if (err) {
              console.error(err)
@@ -43,7 +43,7 @@ module.exports = {
     },
 
     getAverages: (req,res) => {
-        let params = [req.query.listingId];
+        let params = [req.params.id];
         reviewModels.getOverallAverage(params, (err,data) =>{
             if(err){
             console.error(err)
