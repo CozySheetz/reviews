@@ -16,7 +16,7 @@ class Search extends React.Component{
 
     handleGettingAverages() {
         var path = window.location.href;
-        var splits = path.spit('/');
+        var splits = path.split('/');
         var id = parseInt(splits[splits.length - 1]);
         // let idNumber = (window.location.search.slice(-3) * 1);
         console.log('id number getting averges', idNumber)
@@ -34,7 +34,7 @@ class Search extends React.Component{
         e.preventDefault()
         
         var path = window.location.href;
-        var splits = path.spit('/');
+        var splits = path.split('/');
         var id = parseInt(splits[splits.length - 1]);
        
         axios.post(`http://18.224.94.179/search${id}`, {
