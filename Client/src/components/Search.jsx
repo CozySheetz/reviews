@@ -18,7 +18,7 @@ class Search extends React.Component{
         var path = window.location.href;
         var splits = path.split('/');
         var id = parseInt(splits[splits.length - 1]);
-        axios.get(`http://18.224.94.179/average${id}`).then((data)=> 
+        axios.get(`http://18.224.94.179/average/${id}`).then((data)=> 
             this.setState({average: data.data[0].averages})
              )
     }
@@ -33,7 +33,7 @@ class Search extends React.Component{
         var splits = path.split('/');
         var id = parseInt(splits[splits.length - 1]);
        
-        axios.post(`http://18.224.94.179/search${id}`, {
+        axios.post(`http://18.224.94.179/search/${id}`, {
         words: this.state.searchWords,
         })
         .then((data) => this.props.search(data.data))
