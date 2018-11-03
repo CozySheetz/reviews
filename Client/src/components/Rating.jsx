@@ -36,7 +36,9 @@ class Rating extends React.Component {
           </div>
         </div>
       );
-    } 
+    } else {
+      return <p></p>
+    }
   }
 }
 
