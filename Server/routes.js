@@ -4,9 +4,9 @@ const path = require('path')
 const reviewController = require('./controller.js')
 
 router.get('/rating/:id', reviewController.getRatings)
-router.get('/average', reviewController.getAverages)
-router.get('/user',reviewController.getUser)
-router.post('/search', reviewController.getSearch)
+router.get('/average/:id', reviewController.getAverages)
+router.get('/user/:id',reviewController.getUser)
+router.post('/search/:id', reviewController.getSearch)
 
 
 router.get('/*', (req,res) => {
