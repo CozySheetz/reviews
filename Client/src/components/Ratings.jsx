@@ -13,7 +13,7 @@ class Ratings extends React.Component {
 
     handleGettingAverages() {
         let idNumber = (window.location.search.slice(-3) * 1);
-        axios.get('/rating',{
+        axios.get('http://18.224.94.179/rating',{
             params: {listingId: idNumber}
           })
             .then((data) => {
