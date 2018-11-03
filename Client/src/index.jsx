@@ -22,7 +22,6 @@ class App extends React.Component {
   
 
   handleGettingAverages() {
-    // let idNumber = window.location.search.slice(-3)
 
     var path = window.location.href;
     var splits = path.split('/');
