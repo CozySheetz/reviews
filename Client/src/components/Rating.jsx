@@ -22,23 +22,18 @@ class Rating extends React.Component {
         </div>
       )
     }
-
-    if (this.props.ratings.length > 0 && this.props.ratings) {
-      const ratings = this.props.ratings[0];
-      let ratingCriteria = Object.keys(ratings); 
-      return (
-        <div className='starWrapper' style={{  display: 'flex', justifyContent: 'center', padding:'4px'}}>
-          <div className= 'rightCol' style={{  width: '50%' }}>
-            {ratingCriteria.slice(0,3).map(ratingName => reviewDiv(ratingName, ratings[ratingName]))}
-          </div>
-          <div style={{ width: '50%' }}>
-            {ratingCriteria.slice(3,6).map(ratingName => reviewDiv(ratingName, ratings[ratingName]))}
-          </div>
+    const ratings = this.props.ratings[0];
+    let ratingCriteria = Object.keys(ratings); 
+    return (
+      <div className='starWrapper' style={{  display: 'flex', justifyContent: 'center', padding:'4px'}}>
+        <div className= 'rightCol' style={{  width: '50%' }}>
+          {ratingCriteria.slice(0,3).map(ratingName => reviewDiv(ratingName, ratings[ratingName]))}
         </div>
-      );
-    } else {
-      return <p></p>
-    }
+        <div style={{ width: '50%' }}>
+          {ratingCriteria.slice(3,6).map(ratingName => reviewDiv(ratingName, ratings[ratingName]))}
+        </div>
+      </div>
+    );
   }
 }
 

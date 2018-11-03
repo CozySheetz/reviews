@@ -25,10 +25,9 @@ class App extends React.Component {
     var splits = path.split('/');
     var id = parseInt(splits[splits.length - 1]);
 
-    console.log('IDIDIDDIDIDID', id)
 
     axios.get(`http://18.224.94.179/rating/${id}`).then((response) => {
-      console.log('axios response:', response)
+ 
       // console.log('Dot data',data.data)
       this.setState({
         averages: response
