@@ -23,6 +23,8 @@ class App extends React.Component {
 
   handleGettingAverages() {
     let idNumber = window.location.search.slice(-3)
+
+    console.log(idNumber)
     axios.get( "http://18.224.94.179/rating", {
       params: {listingId: idNumber}
     }).then(data => {

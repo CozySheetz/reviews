@@ -16,6 +16,7 @@ class Search extends React.Component{
 
     handleGettingAverages() {
         let idNumber = (window.location.search.slice(-3) * 1);
+        console.log('id number getting averges', idNumber)
         axios.get('http://18.224.94.179/average', {
             params: {listingId: idNumber}
           }).then((data)=> 
