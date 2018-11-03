@@ -35,7 +35,7 @@ class App extends React.Component {
 
   getUserInformation() {
     let idNumber = (window.location.search.slice(-3) * 1); 
-    axios.get("http://18.224.94.179//user",{
+    axios.get("http://18.224.94.179/user",{
       params: {listingId: idNumber}
     }).then(data => {
       this.setState({reviews: data.data});
