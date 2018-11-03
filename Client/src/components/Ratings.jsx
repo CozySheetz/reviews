@@ -15,7 +15,7 @@ class Ratings extends React.Component {
         var path = window.location.href;
         var splits = path.split('/');
         var id = parseInt(splits[splits.length - 1]);
-        axios.get(`http://18.224.94.179/rating${id}`)
+        axios.get(`http://18.224.94.179/rating/${id}`)
             .then((data) => {
                 this.setState({ reviews: data.data });
             })

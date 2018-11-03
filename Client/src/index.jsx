@@ -4,8 +4,6 @@ import axios from 'axios';
 import Reviews from './components/Reviews.jsx';
 import Ratings from './components/Ratings.jsx';
 import Search from './components/Search.jsx';
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,17 +20,19 @@ class App extends React.Component {
   
 
   handleGettingAverages() {
-
+  
     var path = window.location.href;
     var splits = path.split('/');
     var id = parseInt(splits[splits.length - 1]);
 
     console.log('IDIDIDDIDIDID', id)
 
-    axios.get( `http://18.224.94.179/rating${id}`).then(data => {
-      this.setState({averages: data.data
+    axios.get(`http://18.224.94.179/rating/${id}`).then((response) => {
+      console.log('axios response:', response)
+      // console.log('Dot data',data.data)
+      this.setState({
+        averages: response
       });
-
     });
   }
 
@@ -40,7 +40,7 @@ class App extends React.Component {
     var path = window.location.href;
     var splits = path.split('/');
     var id = parseInt(splits[splits.length - 1]);
-    axios.get(`http://18.224.94.179/user${id}`).then(data => {
+    axios.get(`http://18.224.94.179/user/${id}`).then(data => {
       this.setState({reviews: data.data});
     });
   }
