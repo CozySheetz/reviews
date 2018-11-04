@@ -10,34 +10,33 @@ class Reviews extends React.Component {
            
             reviewPage: 1
         }
-        
         this.handleClicks = this.handleClicks.bind(this);
     }
   
     handleClicks (event) {
-        this.setState({reviewPage: Number(event.target.value)})
-        window.scrollTo(200,0)
+        this.setState({reviewPage: Number(event.target.value)}); 
+        window.scrollTo(200,0);
         
 
     }
     renderButtons() {
     
-        let count = Math.ceil(this.props.rev.length / 6)
+        let count = Math.ceil(this.props.rev.length / 6);
         var pages = []; 
         for (let i = 0; i < count; i++) {
-            pages.push(i)
+            pages.push(i);
             
         }
        return  pages.map((page) => {
-            if(page+1 === this.state.reviewPage){
-                var background = '#008489'
-                var fontColor = 'white'
+            if (page+1 === this.state.reviewPage) {
+                var background = '#008489';
+                var fontColor = 'white';
             }
 
         return  (<button 
-                    style={{ 'fontFamily': 'Montse}rrat, sans-serif', 'border-radius' : '50%', 'background': background, 'color': fontColor, 'margin': '10px'}} 
+                    style={{ 'fontFamily': 'Montse}rrat, sans-serif', 'borderRadius' : '50%', 'background': background, 'color': fontColor, 'margin': '10px'}} 
                     onClick={this.handleClicks} 
-                    value={page+1 }> {page+1} 
+                    value={page+1}> {page+1} 
         </button> )
     })
 }

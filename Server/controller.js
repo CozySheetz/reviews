@@ -1,53 +1,51 @@
-const axios = require ('axios')
-const reviewModels = require ('../db/index.js')
+const axios = require('axios')
+const reviewModels = require('../db/index.js')
 
 
 module.exports = {
 
     getRatings: (req, res) => {
-        console.log('in get ratings listing id is', req.params.id)
-        let params = [req.params.id]
-        reviewModels.getRating(params,(err, data) => {
+        let listingId = [req.params.id];
+        reviewModels.getRating(listingId, (err, data) => {
             if (err) {
-                console.error(err)
+                console.error(err);
             } else {
-                console.log('data in the server', data[0])
-                res.send(data[0])
-            }
-        })
-    },
-    
-
-    getUser: (req,res) => {
-      
-        let params = [req.params.id]
-        reviewModels.getJoinInformation(params, (err,data) =>{
-            if(err){
-            console.error(err)
-            } else{
-                res.send(data)
+                console.log('data in the server', data[0]);
+                res.send(data);
             }
         })
     },
 
-    getSearch: (req,res) => {
-        let params = [req.params.id, req.body.words]
-        reviewModels.getSearchInformation(params,(err,data) => {
+
+    getUser: (req, res) => {
+        let listingId = [req.params.id];
+        reviewModels.getJoinInformation(listingId, (err, data) => {
             if (err) {
-             console.error(err)
+                console.error(err);
             } else {
-                res.send(data)
+                res.send(data);
             }
         })
     },
 
-    getAverages: (req,res) => {
-        let params = [req.params.id];
-        reviewModels.getOverallAverage(params, (err,data) =>{
-            if(err){
-            console.error(err)
-            } else{
-                res.send(data)
+    getSearch: (req, res) => {
+        let listingId = [req.params.id, req.body.words];
+        reviewModels.getSearchInformation(listingId, (err, data) => {
+            if (err) {
+                console.error(err);
+            } else {
+                res.send(data);
+            }
+        })
+    },
+
+    getAverages: (req, res) => {
+        let listingId = [req.params.id];
+        reviewModels.getOverallAverage(listingId, (err, data) => {
+            if (err) {
+                console.error(err);
+            } else {
+                res.send(data);
             }
         })
     }
