@@ -16,9 +16,9 @@ class Reviews extends React.Component {
     handleClicks (event) {
         this.setState({reviewPage: Number(event.target.value)}); 
         window.scrollTo(200,0);
+        
 
     }
-    
     renderButtons() {
     
         let count = Math.ceil(this.props.rev.length / 6);
