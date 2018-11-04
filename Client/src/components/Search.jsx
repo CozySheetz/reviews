@@ -23,12 +23,8 @@ class Search extends React.Component {
   }
 
   handleGettingAverages() {
-    var path = window.location.href;
-    var splits = path.split("/");
-    var id = parseInt(splits[splits.length - 1]);
-    axios
-      .get(`/average/${id}`)
-      .then(data => this.setState({ average: data.data[0].averages }));
+    axios.get(`/average/${this.props.listingId}`)
+         .then((response)=> this.setState({ average: response.data[0].averages }));
   }
   handleChange(e) {
     this.setState({ searchWords: e.target.value });
@@ -37,15 +33,10 @@ class Search extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    var path = window.location.href;
-    var splits = path.split("/");
-    var id = parseInt(splits[splits.length - 1]);
-
-    axios
-      .post(`/search/${id}`, {
+    axios.post(`/search/${this.props.listingId}`, {
         words: this.state.searchWords
       })
-      .then(data => this.props.handleSearch(data.data))
+      .then((response)=> this.props.handleSearch(response.data))
       .then(this.setState({ searchWords: "" }));
   }
 
