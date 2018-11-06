@@ -1,6 +1,7 @@
 import React from 'react';
 import Ratings from 'react-ratings-declarative';
 import axios from 'axios';
+import {getListingId} from '../utilities/helpers.jsx'; 
 
 
 class Search extends React.Component {
@@ -25,8 +26,9 @@ class Search extends React.Component {
   handleGettingAverages() {
 
     axios
+    console.log('listingId in getting averages', this.props.listingId)
       .get(`/average/${this.props.listingId}`)
-      .then(data => this.setState({ average: data.data[0].averages }));
+      .then(({data}) => this.setState({ average: data[0].averages }));
   }
   handleChange(e) {
     this.setState({ searchWords: e.target.value });
@@ -36,6 +38,7 @@ class Search extends React.Component {
     e.preventDefault();
 
     axios
+    console.log('listingId in search', this.props.listingId)
       .post(`/search/${this.props.listingId}`, {
         words: this.state.searchWords
       })
@@ -44,6 +47,7 @@ class Search extends React.Component {
   }
 
   render() {
+    console.log(this.props.listingId)
     return (
       <div className="search d-flex">
         <div

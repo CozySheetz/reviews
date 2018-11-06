@@ -12,11 +12,13 @@ class Ratings extends React.Component {
     }
 
     handleGettingAverages() {
+        console.log('props in handleGettingAverages', this.props.listingId)
         var path = window.location.href;
         var splits = path.split('/');
         var id = parseInt(splits[splits.length - 1]);
-        axios.get(`/rating/${id}`)
-            .then((data) => {
+        axios
+        .get(`/rating/${id}`)
+         .then((data) => {
                 this.setState({ reviews: data.data });
             })
     }
