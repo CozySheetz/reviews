@@ -28,13 +28,17 @@ class App extends React.Component {
   }
 
   getAverages() {
-    axios.get(`/rating/${this.state.id}}`).then(({data}) => {
+    axios
+      .get(`/rating/${this.state.listingId}}`)
+      .then(({data}) => {
       this.setState({averages: data});
     });
   }
 
   getUserInformation() {
-    axios.get(`/user/${this.state.id}`).then(({data})=> {
+    axios
+      .get(`/user/${this.state.listingId}`)
+      .then(({data})=> {
       this.setState({reviews: data});
     });
   }
@@ -47,8 +51,8 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="main container w-50">
-          <Search  handleSearch={this.handleSearch} reviewLength={this.state.reviews.length} listingId={this.state.id}/> 
-          <Ratings averages={this.state.averages}  /> 
+          <Search  handleSearch={this.handleSearch} reviewLength={this.state.reviews.length} listingId={this.state.id} /> 
+          <Ratings averages={this.state.averages} /> 
           <Reviews rev={this.state.filtered === false ? this.state.reviews: this.state.filteredReviews} />
         </div>
       </div>
