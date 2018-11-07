@@ -11,20 +11,18 @@ class Ratings extends React.Component {
         this.handleGettingAverages = this.handleGettingAverages.bind(this);
     }
 
+    componentDidMount() {
+        this.handleGettingAverages();
+    }
+
     handleGettingAverages() {
-        var path = window.location.href;
-        var splits = path.split('/');
-        var id = parseInt(splits[splits.length - 1]);
         axios
-        .get(`/rating/${id}`)
+        .get(`/rating/${this.props.listingId}`)
          .then(({data}) => {
                 this.setState({ reviews: data});
             })
     }
 
-    componentDidMount() {
-        this.handleGettingAverages();
-    }
 
     render() {
         return (

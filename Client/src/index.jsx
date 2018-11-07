@@ -5,6 +5,7 @@ import Reviews from './components/Reviews.jsx';
 import Ratings from './components/Ratings.jsx';
 import Search from './components/Search.jsx';
 import {getListingId} from './utilities/helpers.jsx'; 
+
 class App extends React.Component {
   constructor() {
     super();
@@ -15,7 +16,6 @@ class App extends React.Component {
       filteredReviews : [],
       listingId: ''
     };
-    
     this.getAverages = this.getAverages.bind(this);
     this.getUserInformation = this.getUserInformation.bind(this);
     this.handleSearch =this.handleSearch.bind(this);

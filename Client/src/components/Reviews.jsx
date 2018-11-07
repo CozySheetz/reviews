@@ -9,7 +9,6 @@ class Reviews extends React.Component {
         this.state = {
             reviewPage: 1
         }
-        
         this.handleClicks = this.handleClicks.bind(this);
     }
   
