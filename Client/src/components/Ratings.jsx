@@ -18,8 +18,8 @@ class Ratings extends React.Component {
         var id = parseInt(splits[splits.length - 1]);
         axios
         .get(`/rating/${id}`)
-         .then((data) => {
-                this.setState({ reviews: data.data });
+         .then(({data}) => {
+                this.setState({ reviews: data});
             })
     }
 

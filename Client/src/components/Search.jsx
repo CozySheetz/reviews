@@ -11,7 +11,6 @@ class Search extends React.Component {
     this.state = {
       searchWords: "",
       average: "",
-
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +25,6 @@ class Search extends React.Component {
   handleGettingAverages() {
 
     axios
-    console.log('listingId in getting averages', this.props.listingId)
       .get(`/average/${this.props.listingId}`)
       .then(({data}) => this.setState({ average: data[0].averages }));
   }
@@ -38,7 +36,6 @@ class Search extends React.Component {
     e.preventDefault();
 
     axios
-    console.log('listingId in search', this.props.listingId)
       .post(`/search/${this.props.listingId}`, {
         words: this.state.searchWords
       })
@@ -47,7 +44,6 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log(this.props.listingId)
     return (
       <div className="search d-flex">
         <div
