@@ -51,9 +51,9 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="main container w-50">
-          <Search  handleSearch={this.handleSearch} reviewLength={this.state.reviews.length} listingId={this.state.listingId} /> 
+          <Search  handleSearch={this.handleSearch} reviewLength={this.state.reviews.length} listingId={this.state.listingId}/> 
           <Ratings averages={this.state.averages} listingId={this.state.listingId}/> 
-          <Reviews rev={this.state.filtered === false ? this.state.reviews: this.state.filteredReviews} />
+          <Reviews rev={this.state.filtered === false ? this.state.reviews: this.state.filteredReviews}/>
         </div>
       </div>
     );

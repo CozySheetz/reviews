@@ -7,9 +7,9 @@ class Reviews extends React.Component {
         super(props)
 
         this.state = {
-           
             reviewPage: 1
         }
+        
         this.handleClicks = this.handleClicks.bind(this);
     }
   
