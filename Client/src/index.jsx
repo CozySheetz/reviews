@@ -31,8 +31,9 @@ class App extends React.Component {
     axios
       .get(`/rating/${this.state.listingId}}`)
       .then(({data}) => {
-      this.setState({averages: data});
-    });
+      this.setState({averages: data})
+    })
+      .catch((err) => console.log(err)); 
   }
 
   getUserInformation() {
@@ -40,23 +41,31 @@ class App extends React.Component {
       .get(`/user/${this.state.listingId}`)
       .then(({data})=> {
       this.setState({reviews: data});
-    });
-  }
+    }) 
+      .catch((err) => console.log(err))
+  }; 
 
   handleSearch(filteredReviews) {
    this.setState({filteredReviews, filtered: true});
   }
 
   render() {
-    return (
-      <div className="app">
-        <div className="main container w-50">
-          <Search  handleSearch={this.handleSearch} reviewLength={this.state.reviews.length} listingId={this.state.listingId}/> 
-          <Ratings averages={this.state.averages} listingId={this.state.listingId}/> 
-          <Reviews rev={this.state.filtered === false ? this.state.reviews: this.state.filteredReviews}/>
+    if (this.state.averages.length > 0){
+      return (
+        <div className="app">
+          <div className="main container w-50">
+            <Search  handleSearch={this.handleSearch} reviewLength={this.state.reviews.length} listingId={this.state.listingId}/> 
+            <Ratings averages={this.state.averages} listingId={this.state.listingId}/> 
+            <Reviews rev={this.state.filtered === false ? this.state.reviews: this.state.filteredReviews}/>
+          </div>
         </div>
-      </div>
-    );
+      );
+
+    } else {
+      return (
+        <div> </div> 
+      )
+    }
   }
 }
 

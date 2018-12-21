@@ -26,7 +26,8 @@ class Search extends React.Component {
 
     axios
       .get(`/average/${this.props.listingId}`)
-      .then(({data}) => this.setState({ average: data[0].averages }));
+      .then(({data}) => this.setState({ average: data[0].averages }))
+      .catch((err) => console.log(err)); 
   }
   handleChange(e) {
     this.setState({ searchWords: e.target.value });
@@ -40,7 +41,8 @@ class Search extends React.Component {
         words: this.state.searchWords
       })
       .then(({data}) => this.props.handleSearch(data))
-      .then(this.setState({ searchWords: "" }));
+      .then(this.setState({ searchWords: "" }))
+      .catch((err) => console.log(err))
   }
 
   render() {

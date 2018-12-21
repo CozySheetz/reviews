@@ -15,12 +15,13 @@ class Ratings extends React.Component {
         this.handleGettingAverages();
     }
 
-    handleGettingAverages() {
-        axios
+   async  handleGettingAverages() {
+      await  axios
         .get(`/rating/${this.props.listingId}`)
          .then(({data}) => {
                 this.setState({ reviews: data});
             })
+          .catch((err) => console.log(err))
     }
 
 

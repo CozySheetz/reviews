@@ -16,12 +16,15 @@ module.exports = {
     },
 
 
-    getUser: (req, res) => {
+    getUser:  (req, res) => {
+        console.log("IN GET USER")
         let listingId = [req.params.id];
-        reviewModels.getJoinInformation(listingId, (err, data) => {
+    reviewModels.getJoinInformation(listingId, (err, data) => {
             if (err) {
-                console.error(err);
-            } else {
+                
+                console.log('There is an error in GetUser : ', JSON.stringify(err));
+            } 
+            else {
                 res.send(data);
             }
         })
