@@ -1,14 +1,18 @@
 var mysql = require('mysql');
+
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Annabelle',
     database: 'review'
 });
+
+// connect to RDS
+
 // var connection = mysql.createConnection({
 //     host: 'reviewz.cv4d8qjavmer.us-east-2.rds.amazonaws.com',
 //     user: 'ELang7',
-//     password: '0Rangesoda',
 //     database: 'review',
 //     port:3306
 // });
@@ -48,7 +52,6 @@ module.exports = {
 
 
     getJoinInformation: (listingId, cb) => {
-        console.log('listing id in get join', listingId)
         let info = `SELECT first_name,last_name, picture, dateCreated, overview from user u inner join reviews r on u.id=r.userId WHERE listingId= (?) ORDER BY r.dateCreated DESC`;
 
         connection.query( info, listingId, (err, data) => {

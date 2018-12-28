@@ -6,7 +6,7 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon Server/index.js",
-    "start": "nodemon Server/index.js ",
+    "start": "Server/index.js ",
     "seed": "mysql -u root -p < db/schema.sql",
     "test": "jest",
     "start-aws": "pm2 start Server/index.js",
