@@ -14,6 +14,7 @@ var connection = mysql.createConnection({
 //     host: 'reviewz.cv4d8qjavmer.us-east-2.rds.amazonaws.com',
 //     user: 'ELang7',
 //     database: 'review',
+//     password: '0Rangesoda',
 //     port:3306
 // });
 

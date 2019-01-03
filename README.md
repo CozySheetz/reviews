@@ -1,4 +1,4 @@
-T**Getting Started**
+**Getting Started**
 ```
  This is the review microservice that was part of an airbnb clone
  ```
