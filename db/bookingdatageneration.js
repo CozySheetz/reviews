@@ -2,7 +2,7 @@ var faker = require('faker');
 var fs = require('fs');
 
 
-let count =0; 
+let count = 0; 
 
 let createData = () => {
     let str = '';
@@ -25,8 +25,3 @@ var stream = fs.createWriteStream(__dirname + 'bookingInfo.csv');
 stream.write(createData());
 stream.end(); 
 
-// var fs = require('fs');
-// var wstream = fs.createWriteStream('myOutput.txt');
-// wstream.write('Hello world!\n');
-// wstream.write('Another line\n');
-// wstream.end();

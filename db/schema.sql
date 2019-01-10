@@ -1,6 +1,5 @@
 
 
--- mysql -u root -p < db/schema.sql
 DROP DATABASE IF EXISTS review;
 CREATE DATABASE IF NOT EXISTS review;
 
