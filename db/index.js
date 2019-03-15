@@ -8,15 +8,6 @@ var connection = mysql.createConnection({
     database: 'review'
 });
 
-// connect to RDS
-
-// var connection = mysql.createConnection({
-//     host: 'reviewz.cv4d8qjavmer.us-east-2.rds.amazonaws.com',
-//     user: 'ELang7',
-//     database: 'review',
-//     password: '0Rangesoda',
-//     port:3306
-// });
 
 connection.connect(function (err) {
     if (err) {
